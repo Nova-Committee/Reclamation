@@ -28,7 +28,10 @@ public abstract class MixinItem {
     @Inject(method = "use", at = @At("RETURN"), cancellable = true)
     private void inject$use(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (cir.getReturnValue().getResult().consumesAction()) return;
-        if (!((Item) (Object) this instanceof BlockItem b) || !(b.getBlock() instanceof FallingBlock)) return;
+        final Item thisInstance = (Item) (Object) this;
+        if (!(thisInstance instanceof BlockItem)) return;
+        final BlockItem b = (BlockItem) thisInstance;
+        if (!(b.getBlock() instanceof FallingBlock)) return;
         BlockHitResult result = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
         BlockHitResult result1 = result.withPosition(result.getBlockPos().above());
         InteractionResult interactionresult = b.useOn(new UseOnContext(player, hand, result1));
