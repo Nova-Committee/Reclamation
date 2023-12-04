@@ -7,7 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -30,7 +29,6 @@ public abstract class MixinItem {
     private void inject$use(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (cir.getReturnValue().getResult().consumesAction()) return;
         if (!((Item) (Object) this instanceof BlockItem b) ||
-                b instanceof PlaceOnWaterBlockItem ||
                 !(b.getBlock() instanceof FallingBlock)) return;
         BlockHitResult result = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
         BlockHitResult result1 = result.withPosition(result.getBlockPos().above());
