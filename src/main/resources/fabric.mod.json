@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "reclamation",
+  "version": "${mod_version}",
+  "name": "reclamation",
+  "description": "Allow you to place falling block upon any fluid.",
+  "authors": [
+    "Rinko1231",
+    "Tapio"
+  ],
+  "license": "Nova-Relay-License-1.0",
+  "environment": "*",
+  "mixins": [
+    "reclamation.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  }
+}
